@@ -77,6 +77,24 @@ public:
 
 	}
 
+	string getFirstName() {
+		return this->firstName;
+	}
+
+	string getLastName() {
+		return this->lastName;
+
+	}
+
+	int getAge() {
+		return this->age;
+
+	}
+
+	string getPhoneNo() {
+		return this->phoneNo;
+	}
+
 
 
 
