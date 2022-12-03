@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <ctime>
 using namespace std;
 
 enum {CinemaCity, MaxCinema, CinemaSun};
@@ -11,6 +10,8 @@ class Ticket {
 	float price = 0;
 	string date = "";
 	string movie = "";
+	// to be added the duration of the movie
+
 	static int TICKET_ID;
 
 
@@ -68,17 +69,33 @@ public:
 		else {
 			this->movie = movie;
 
-		}
+		};
+
+
 
 
 	}
+
+	float getPrice() {
+		return this->price;
+	}
+
+	string getMovie() {
+		return this->movie;
+
+	}
+
+	string getDate() {
+		return this->date;
+	}
+
 	//update
 	~Ticket() {
 		Ticket::TICKET_ID--;
 
 	};
 
-	// getters to be added soon
+	
 
 
 };

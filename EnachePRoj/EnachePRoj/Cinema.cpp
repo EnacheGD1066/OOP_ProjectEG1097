@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 // class cinema is actually the location the event takes place
@@ -7,9 +8,9 @@ enum CinemaPlace {CinemaCity, MAXCinema, SunCinema};
 
 class Cinema {
 
-	char* adress;
-	int seatNumber;
-	int* seatRow;
+	char* adress = nullptr;
+	int* seats = nullptr;
+	int noRows = 0;
 	const static int MAX_CAPACITY=100;
 
 
@@ -18,10 +19,14 @@ public:
 
 	};
 
-	Cinema(char* adress, int seatNumber, int* seatRow){
+	
+	Cinema(char* adress, int* seats, int noRows) {
 		this->setAdress(adress);
-		this->setSeat(seatNumber, seatRow);
+		this->setSeats(seats, noRows);
+		
 	}
+
+
 
 	void setAdress(char* adress) {
 		if (strlen(adress) <10) {
@@ -36,30 +41,40 @@ public:
 
 	}
 
-	//has some errors... to be updated..
-	void setSeat(seat, seatRow) {
-		
-		if (this->seatNumber != nullptr) {
-			delete[] this->seatNumber;
-		}
-		if (seatNumber > Cinema::MAX_CAPACITY) {
-			throw "Invalid seat number";
+	void setSeats(int* seats, int noRows) {
+		if (seats != nullptr) {
+			delete[] this->seats;
 		}
 
+		// allocating memory
+		this->seats = new int[noRows];
+		for (int i = 0;i < noRows;i++) {
+			this->seats[i] = seats[i];
 
-		// getters to be made...
+		}
+		this->noRows = noRows;
 
-	
+		//validation 
+
+		if (noRows > Cinema::MAX_CAPACITY) {
+			throw "max capacity cannot be exceeded";
+		}
+
 	}
+	
 
 
 
 
 	char* getAdress() {
 		
-		char* adressCopy = new char[strlen(this->adress) + 1];
-		strcpy(adressCopy, this->adress);
-		return adressCopy;
+		char* adress = new char[strlen(this->adress) + 1];
+	
+		for (int i = 0; i < strlen(this->adress);i++) {
+			this->adress[i] = adress[i];
+		}
+		return adress;
+
 	}
 
 
