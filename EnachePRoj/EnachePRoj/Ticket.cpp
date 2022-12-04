@@ -10,7 +10,9 @@ class Ticket {
 	float price = 0;
 	string date = "";
 	string movie = "";
-	// to be added the duration of the movie
+	
+	int duration = 0;
+	//in minutes 
 
 	static int TICKET_ID;
 
@@ -21,11 +23,12 @@ public:
 
 	};
 
-	Ticket(double price, string date, string movie) {
+	Ticket(double price, string date, string movie, int duration) {
 
 		this->setPrice(price);
 		this->setMovie(movie);
 		this->setDate(date);
+		this->setDuration(duration);
 		
 	};
 
@@ -45,6 +48,16 @@ public:
 		}
 	};
 
+
+	void setDuration(int duration) {
+		if (duration < 0) {
+			throw "Duration can't be negative";
+		}
+		else {
+
+			this->duration = duration;
+		}
+	}
 
 
 
@@ -89,13 +102,62 @@ public:
 		return this->date;
 	}
 
-	//update
+
+	int getDuration() {
+		return this->duration;
+	}
+		
+
+	// copy constructor
+	Ticket(const Ticket& ticket)
+	{
+		this->price = ticket.price;
+		this->date = ticket.date;
+		this->movie = ticket.movie;
+		this->duration = ticket.duration;
+	}
+
 	~Ticket() {
+
 		Ticket::TICKET_ID--;
 
 	};
 
 	
+	// operator << and >> 
+	void operator<<(ostream& out) {
+
+
+		cout << endl << "Price " << this->price;
+		cout << endl << " Date : " << this->date;
+		cout << endl << " Movie :: " << this->movie;
+		cout << endl << "Duration : " << this->duration;
+
+	}
+
+
+	void operator>>(istream& in) {
+
+		cout << endl <<  " Price: ";
+		in >> price;
+		cout << endl << "Date : ";
+		in >> date;
+		cout << endl << " Movie : ";
+		in >> movie;
+		cout << endl << " Duration :";
+		in >> duration;
+	}
+
+	// operators 
+
+	void operator*=(float value) {
+		this->price *= value;
+	}
+	
+	bool operator<=(float value) {
+		return this->price <= value;
+	}
+
 
 
 };

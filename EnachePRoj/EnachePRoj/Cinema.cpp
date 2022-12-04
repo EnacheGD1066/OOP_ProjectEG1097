@@ -78,4 +78,64 @@ public:
 	}
 
 
+	//copy constructor
+	Cinema(const Cinema& cinema)
+	{
+		this->adress = cinema.adress;
+		this->seats = cinema.seats;
+		this->noRows = cinema.noRows;
+
+	}
+
+
+
+	//operators >> and <<
+
+
+	void operator<<(ostream& out) {
+
+
+		cout << endl << "Adress : " << this->adress;
+		cout << endl << " Seat  : " << this->seats;
+		cout << endl << " Row :: " << this->noRows;
+
+	}
+
+
+	void operator>>(istream& in) {
+
+		cout << endl << " Adress: ";
+		for (int i = 0; i < strlen(this->adress);i++) {
+			this->adress[i] = adress[i];
+		}
+		in >> adress;
+		cout << endl << "Seat : ";
+		for (int i = 0; i < noRows;i++) {
+			in >> seats[i];
+		}
+		cout << endl << " Rows : ";
+		in >> noRows;
+		
+	}
+
+	// destructor 
+	~Cinema() {
+		delete[] this->adress;
+		delete[] this->seats;
+	}
+
+
+	void operator+(int add) {
+		seats+= add;
+	}
+
+
+	void operator-(int minus) {
+		seats -= minus;
+	}
+
+
+	// generic methods to be implemented.
+
+
 };
