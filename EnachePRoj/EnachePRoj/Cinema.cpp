@@ -81,24 +81,82 @@ public:
 	//copy constructor
 	Cinema(const Cinema& cinema)
 	{
-		this->adress = cinema.adress;
-		this->seats = cinema.seats;
+		if (this->adress != nullptr) {
+
+
+			this->adress = new char[strlen(adress) + 1];
+			for (int i = 0; i < strlen(adress) + 1; i++) {
+				this->adress[i] = cinema.adress[i];
+
+			}
+
+		}
+		else this->adress = nullptr;
+
+
+		if (seats != nullptr) {
+			this->seats = new int[noRows];
+			for (int i = 0;i < noRows;i++) {
+				this->seats[i] = cinema.seats[i];
+
+			}
+		}
+		else this->seats = nullptr;
+	
 		this->noRows = cinema.noRows;
 
 	}
 
+	Cinema& operator=(const Cinema& cinema)
+	{
+		if (this->adress != nullptr) {
 
 
-	//operators >> and <<
+			this->adress = new char[strlen(adress) + 1];
+			for (int i = 0; i < strlen(adress) + 1; i++) {
+				this->adress[i] = cinema.adress[i];
+
+			}
+
+		}
+		else this->adress = nullptr;
 
 
-	void operator<<(ostream& out) {
+		if (seats != nullptr) {
+			this->seats = new int[noRows];
+			for (int i = 0;i < noRows;i++) {
+				this->seats[i] = cinema.seats[i];
+
+			}
+		}
+		else this->seats = nullptr;
+
+		this->noRows = cinema.noRows;
 
 
-		cout << endl << "Adress : " << this->adress;
-		cout << endl << " Seat  : " << this->seats;
-		cout << endl << " Row :: " << this->noRows;
+		return *this;
+	} 
 
+
+
+	// destructor 
+	~Cinema() {
+		if (this->adress != nullptr) {
+			delete[] this->adress;
+		}
+		if (this->seats != nullptr) {
+			delete[] this->seats;
+		}
+	}
+
+
+	void operator+(int add) {
+		seats+= add;
+	}
+
+
+	void operator-(int minus) {
+		seats -= minus;
 	}
 
 
@@ -115,27 +173,11 @@ public:
 		}
 		cout << endl << " Rows : ";
 		in >> noRows;
-		
+
 	}
 
-	// destructor 
-	~Cinema() {
-		delete[] this->adress;
-		delete[] this->seats;
-	}
-
-
-	void operator+(int add) {
-		seats+= add;
-	}
-
-
-	void operator-(int minus) {
-		seats -= minus;
-	}
-
-
-	// generic methods to be implemented.
-
-
+	
+	
 };
+
+

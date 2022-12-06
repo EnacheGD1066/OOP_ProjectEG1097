@@ -103,9 +103,36 @@ public:
 	{
 		this->firstName = customer.firstName;
 		this->lastName = customer.lastName;
-		this->phoneNo = customer.phoneNo;
+		
+		if (this->phoneNo != nullptr)
+		{
+			this->phoneNo = new char[strlen(phoneNo) + 1];
+			for (int i = 0; i < strlen(phoneNo) + 1;i++) {
+				this->phoneNo[i] = phoneNo[i];
+			}
+			this->phoneNo = nullptr;
+		}
 		this->age = customer.age;
 	}
+
+
+	Customer& operator=(const Customer& customer)
+	{
+		this->firstName = customer.firstName;
+		this->lastName = customer.lastName;
+
+		if (this->phoneNo != nullptr)
+		{
+			this->phoneNo = new char[strlen(phoneNo) + 1];
+			for (int i = 0; i < strlen(phoneNo) + 1;i++) {
+				this->phoneNo[i] = phoneNo[i];
+			}
+			this->phoneNo = nullptr;
+		}
+		this->age = customer.age;
+	}
+
+
 
 
 	// destructor
@@ -150,6 +177,14 @@ public:
 	friend bool operator==(Customer& c1, Customer& c2) {
 		return c1.getFirstName() == c2.getFirstName();
 	}
+
+	void displayFullName() {
+		string fullName;
+		fullName = this->firstName + " " + this->lastName;
+		cout << lastName << endl;
+	}
+
+
 
 };
 

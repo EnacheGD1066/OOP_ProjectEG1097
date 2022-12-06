@@ -23,6 +23,8 @@ public:
 
 	};
 
+	
+
 	Ticket(double price, string date, string movie, int duration) {
 
 		this->setPrice(price);
@@ -159,5 +161,22 @@ public:
 	}
 
 
+	// generic methods
+
+	void convertToHours(int duration) {
+		this->duration = duration / 60;
+	}
+
+	//tax
+	void calculatePriceWithoutTax() {
+		float tax = 1.19;
+
+		float priceWithoutTax;
+		priceWithoutTax = price - price / 1.19;
+
+	}
+
 
 };
+             
+
